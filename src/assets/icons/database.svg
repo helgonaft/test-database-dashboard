@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="57px" viewBox="0 0 56 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>DBs/db-icon/dark</title>
+    <defs>
+        <path d="M28,15 C21.9225,15 17,17.46125 17,20.5 C17,23.53875 21.9225,26 28,26 C34.0775,26 39,23.53875 39,20.5 C39,17.46125 34.0775,15 28,15 M17,23.25 L17,27.375 C17,30.41375 21.9225,32.875 28,32.875 C34.0775,32.875 39,30.41375 39,27.375 L39,23.25 C39,26.28875 34.0775,28.75 28,28.75 C21.9225,28.75 17,26.28875 17,23.25 M17,30.125 L17,34.25 C17,37.28875 21.9225,39.75 28,39.75 C34.0775,39.75 39,37.28875 39,34.25 L39,30.125 C39,33.16375 34.0775,35.625 28,35.625 C21.9225,35.625 17,33.16375 17,30.125 Z" id="path-1"></path>
+    </defs>
+    <g id="Databases" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DB-V19-/-clusters--/-multi-dbs" transform="translate(-80.000000, -127.000000)">
+            <g id="DB" transform="translate(48.000000, 96.000000)">
+                <g id="Meta" transform="translate(32.000000, 31.000000)">
+                    <g id="DB-Icon" transform="translate(0.000000, 0.644476)">
+                        <circle id="Oval" fill="#093E52" cx="28" cy="28" r="28"></circle>
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="icon" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

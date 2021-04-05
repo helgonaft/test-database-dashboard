@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="7px" viewBox="0 0 12 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>User context</title>
+    <g id="Databases" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DB-V19-/-clusters--/-multi-dbs" transform="translate(-1846.000000, -25.000000)">
+            <g id="User" transform="translate(1656.000000, 8.000000)">
+                <g id="Group" transform="translate(176.000000, 0.000000)">
+                    <g id="User-context" transform="translate(20.000000, 20.000000) rotate(-90.000000) translate(-20.000000, -20.000000) ">
+                        <rect id="BG" fill="#FFFFFF" opacity="0" x="0" y="0" width="40" height="40" rx="2"></rect>
+                        <g id="Material/Icons-black/notifications" transform="translate(10.000000, 10.000000)" fill="#9DB2BA">
+                            <polygon id="Fill-1" transform="translate(9.400808, 9.999500) rotate(90.000000) translate(-9.400808, -9.999500) " points="13.6078174 6.59869243 9.4012659 10.8052439 5.19379777 6.59869243 3.90130757 7.89943258 9.4012659 13.4003076 14.9003076 7.89943258"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
