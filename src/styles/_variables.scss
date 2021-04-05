@@ -1,0 +1,19 @@
+$grey-50: #f4f5f6; // Background color
+$grey-100: #f5f7f8; // Input bg
+$grey-200: #ecf0f2; // Actions bg
+$grey-300: #dae0e4; // Divider
+$navy-400: #3a6575; // Db status
+$navy-500: #093e52; // Header and text
+$green-500: #76bc1c; // Used for CTAs
+
+$backdrop: rgba(#e6e9eb, 0.7); // Dialog backdrop
+
+$radius: 2px; // Used for Database, Dialogs, Login
+
+// E.g. Database block
+$shadow-small: 1px 1px 2px 0px rgba($navy-500, 0.06),
+2px 2px 20px 0px rgba($navy-500, 0.03);
+
+// Dialog shadow
+$shadow-dialog: 0px 1px 3px 0px rgba($navy-500, 0.09),
+0px 6px 18px 0px rgba($navy-500, 0.17);
