@@ -1,5 +1,17 @@
-.loginForm {
-  border: 1px solid grey;
-  background: white;
-  box-shadow: 1px 1px 5px grey;
+@import "_variables.scss";
+
+.login {
+  height: calc(100vh - 56px);
+
+  &__form {
+    margin-top: -56px;
+    background: white;
+    border-radius: $radius;
+    box-shadow: $shadow-small;
+
+    .form-control {
+      background-color: $grey-50;
+    }
+  }
+
 }

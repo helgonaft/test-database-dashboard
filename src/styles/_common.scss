@@ -1,0 +1,43 @@
+@import '_variables.scss';
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: $navy-500;
+}
+
+body {
+  background-color: $grey-50
+}
+
+.btn-primary {
+  background-color: $green-500;
+  color: white;
+  outline: none;
+  border: none;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled):active:focus {
+    background-color: $green-500;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+
+input:focus,
+input:active,
+.form-control:focus,
+.form-control:active {
+  border: 1px solid $navy-500;
+  outline: none;
+  box-shadow: none;
+}
