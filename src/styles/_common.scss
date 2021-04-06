@@ -7,12 +7,17 @@ h3,
 h4,
 h5,
 h6,
-p {
-  color: $navy-500;
+p,
+.text-primary {
+  color: $navy-500 !important;
+}
+
+.text-secondary {
+  color: $grey-50;
 }
 
 body {
-  background-color: $grey-50
+  background-color: $grey-50;
 }
 
 .btn-primary {
@@ -40,4 +45,10 @@ input:active,
   border: 1px solid $navy-500;
   outline: none;
   box-shadow: none;
+}
+
+.card {
+  background: white;
+  border-radius: $radius;
+  box-shadow: $shadow-small;
 }
