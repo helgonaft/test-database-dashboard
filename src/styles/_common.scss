@@ -1,4 +1,4 @@
-@import '_variables.scss';
+@import "_variables.scss";
 
 body,
 h1,
@@ -37,6 +37,14 @@ body {
   }
 }
 
+.btn,
+.btn:active,
+.btn:active,
+.btn-focus,
+.btn:not(:disabled) {
+  outline: none;
+  box-shadow: none !important;
+}
 
 input:focus,
 input:active,

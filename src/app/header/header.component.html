@@ -2,17 +2,16 @@
   <a class="navbar-brand d-flex" href="#">
     <img src="../assets/icons/exasol.svg" height="16" class="d-inline-block align-top" alt="Exasol" />
   </a>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          {{username}}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
-      </li>
-    </ul>
+
+  <div class="btn-group">
+    <button type="button" class="btn text-white dropdown-toggle" data-toggle="dropdown" data-display="static"
+      aria-haspopup="true" aria-expanded="false">
+      {{username}}
+    </button>
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+      <button class="dropdown-item" type="button">
+        Logout
+      </button>
+    </div>
   </div>
 </nav>
