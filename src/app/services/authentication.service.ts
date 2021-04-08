@@ -28,7 +28,7 @@ export class AuthService {
     if (username === "User" && password === "User123!") {
       userObj = {
         name: username,
-        isAdmin: true
+        isAdmin: false
       };
       localStorage.setItem("user", JSON.stringify(userObj));
       this.userSubject.next(userObj);
