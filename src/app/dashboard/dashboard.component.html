@@ -3,12 +3,8 @@
   <div class="col-12">
     <div class="dashboard card w-100">
       <div class="dashboard__header p-3 ">
-        <div
-          class="row w-100 d-flex align-items-center justify-content-between"
-        >
-          <div
-            class="dashboard__header__details col-8 d-flex align-items-start justify-content-start"
-          >
+        <div class="row w-100 d-flex align-items-center justify-content-between">
+          <div class="dashboard__header__details col-8 d-flex align-items-start justify-content-start">
             <div class="pb-3 px-3">
               <img src="../../assets/icons/database.svg" class="icon" />
             </div>
@@ -16,37 +12,24 @@
               <p class="status m-0">Running</p>
               <h4 class="mb-3">Playground</h4>
               <div class="d-flex align-items-center">
-                <span
-                  class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
-                  >AWS Region</span
-                >
+                <span class="dashboard__header__label descriptionLabel text-secondary text-uppercase">AWS Region</span>
                 <span class="text-primary">EU Frankfurt</span>
               </div>
               <div class="d-flex align-items-center">
-                <span
-                  class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
-                  >Used storage</span
-                >
+                <span class="dashboard__header__label descriptionLabel text-secondary text-uppercase">Used
+                  storage</span>
                 <span class="text-primary">1.45 TB</span>
               </div>
             </div>
           </div>
-          <div class="col-auto dashboard__actions">
+          <div class="col-auto dashboard__actions" *ngIf="isAdmin">
             <!-- TODO: create actions component -->
             <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                data-display="static"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                data-display="static" aria-haspopup="true" aria-expanded="false">
                 Actions
               </button>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
-              >
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
                 <button class="dropdown-item" type="button">
                   Stop database
                 </button>
@@ -59,27 +42,20 @@
         </div>
       </div>
       <div class="dashboard__row p-3 ">
-        <div
-          class="row w-100 d-flex align-items-center justify-content-between"
-        >
+        <div class="row w-100 d-flex align-items-center justify-content-between">
           <div class="d-flex col-6 col-sm-8 w-100">
             <div class="d-flex px-3">
               <img src="../../assets/icons/cluster.svg" class="icon" />
             </div>
             <div class="row w-100 pl-3">
-              <div
-                class="col-6 d-flex flex-column align-items-start justify-content-center"
-              >
+              <div class="col-6 d-flex flex-column align-items-start justify-content-center">
                 <span class="status">Running</span>
                 <h6 class="mt-2">ETL Cluster</h6>
               </div>
-              <div
-                class="col-6  d-flex flex-column align-items-start justify-content-center"
-              >
+              <div class="col-6  d-flex flex-column align-items-start justify-content-center">
                 <span class="badgeLabel">Lead</span>
                 <p class="m-0">
-                  <span class="text-secondary text-uppercase descriptionLabel"
-                    >Cluster size
+                  <span class="text-secondary text-uppercase descriptionLabel">Cluster size
                   </span>
                   <span>m5.large</span>
                 </p>
@@ -87,22 +63,14 @@
             </div>
           </div>
 
-          <div class="dashboard__actions col-auto">
+          <div class="dashboard__actions col-auto" *ngIf="isAdmin">
             <!-- TODO: create actions component -->
             <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                data-display="static"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                data-display="static" aria-haspopup="true" aria-expanded="false">
                 Actions
               </button>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
-              >
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
                 <button class="dropdown-item" type="button">
                   Stop cluster
                 </button>
