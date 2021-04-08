@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthenticationService } from "../services/authentication.service";
+import { AuthService } from "../services/authentication.service";
 import { Router } from "@angular/router";
 import {
   FormBuilder,
@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
   public error: string;
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
-    if (this.authenticationService.userValue) {
+    if (this.authService.currentUser) {
       this.router.navigate(["/dashboard"]);
     }
   }
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    this.authenticationService
+    this.authService
       .login(
         this.loginForm.controls.username.value,
         this.loginForm.controls.password.value
