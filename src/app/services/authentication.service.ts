@@ -24,21 +24,24 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    let userObj: User;
     if (username === "User" && password === "User123!") {
-      localStorage.setItem("user", JSON.stringify(username));
-      this.userSubject.next({
-        name: username,
-        isAdmin: false
-      });
-      return of(username);
-    }
-    if (username === "Admin" && password === "Admin123!") {
-      localStorage.setItem("user", JSON.stringify(username));
-      this.userSubject.next({
+      userObj = {
         name: username,
         isAdmin: true
-      });
-      return of(username);
+      };
+      localStorage.setItem("user", JSON.stringify(userObj));
+      this.userSubject.next(userObj);
+      return of(userObj);
+    }
+    if (username === "Admin" && password === "Admin123!") {
+      userObj = {
+        name: username,
+        isAdmin: true
+      };
+      localStorage.setItem("user", JSON.stringify(userObj));
+      this.userSubject.next(userObj);
+      return of(userObj);
     }
     return throwError("Wrong username or password");
   }
