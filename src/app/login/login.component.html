@@ -2,14 +2,25 @@
   <div class="col-4 col-md-6 col-sm-12 p-5 login__form">
     <h5>Welcome back to</h5>
     <h2>Exasol SaaS</h2>
-    <form class="mt-5">
+    <form class="mt-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group mb-4">
-        <input class="form-control py-4" type="text" name="userName" placeholder="User name" />
+        <input class="form-control py-4" type="text" name="userName" placeholder="User name" formControlName="username"
+          [ngClass]="{ 'is-invalid': !loginForm.untouched && loginForm.controls.username.errors }" />
+        <div
+          *ngIf="loginForm.touched && loginForm.controls.username.errors && loginForm.controls.username.errors.required"
+          class="text-danger">Username is required</div>
+
       </div>
       <div class="form-group mb-4">
-        <input class="form-control py-4" type="password" name="password" placeholder="Password" />
+        <input class="form-control py-4" type="password" name="password" placeholder="Password"
+          formControlName="password"
+          [ngClass]="{ 'is-invalid': !loginForm.untouched && loginForm.controls.password.errors }" />
+        <div
+          *ngIf="!loginForm.untouched && loginForm.controls.password.errors && loginForm.controls.password.errors.required"
+          class="text-danger">Password is required</div>
       </div>
       <button class="btn btn-primary btn-sm w-100" type="submit">Sign in</button>
     </form>
+    <div *ngIf="error" class="text-danger mt-3">{{error}}</div>
   </div>
 </div>
