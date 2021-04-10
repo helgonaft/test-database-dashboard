@@ -1,5 +1,5 @@
 <div class="row py-5 px-4" *ngIf="!isLoading; else spinner">
-  <div class="col-12">
+  <div class="col-12" *ngIf="!error; else errorMessage">
     <div class="dashboard card w-100">
       <div class="dashboard__header p-3 ">
         <div class="row w-100 d-flex align-items-center justify-content-between">
@@ -70,5 +70,11 @@
 <ng-template #spinner>
   <div class="d-flex align-items-center justify-content-center w-100 m-5 p-5">
     <span>Loading...</span>
+  </div>
+</ng-template>
+
+<ng-template #errorMessage>
+  <div class="d-flex align-items-center justify-content-center w-100 m-5 p-5 ">
+    <div class="alert alert-danger">Error: {{error}}</div>
   </div>
 </ng-template>

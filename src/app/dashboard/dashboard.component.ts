@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { Store, select } from "@ngrx/store";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -23,6 +24,8 @@ export class DashboardComponent implements OnInit {
   public database: Database;
   public database$: Observable<Database>;
   public isLoading: boolean;
+  public error: string;
+
   constructor(
     private authService: AuthService,
     private modalService: NgbModal,
@@ -56,10 +59,20 @@ export class DashboardComponent implements OnInit {
   }
 
   getDatabaseInformation(): void {
-    this.databaseService.getDatabaseInfo().subscribe(data => {
-      this.store.dispatch(loadDatabase({ databaseData: data }));
-      this.isLoading = false;
-    });
+    this.databaseService
+      .getDatabaseInfo()
+      .pipe(
+        catchError(err => {
+          this.isLoading = false;
+          this.error = err.message;
+          return throwError(err);
+        })
+      )
+      .subscribe(data => {
+        this.store.dispatch(loadDatabase({ databaseData: data }));
+        this.isLoading = false;
+        this.error = "";
+      });
   }
 
   startDatabase(): void {
