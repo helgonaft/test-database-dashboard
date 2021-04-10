@@ -1,5 +1,5 @@
 import { Action, createAction, props } from "@ngrx/store";
-import { Database } from "../types/database.type";
+import { Database, Cluster } from "../types";
 
 export enum DatabaseActionTypes {
   LoadDatabase = "[DB] Load Database information",
@@ -27,3 +27,24 @@ export const loadDatabase = createAction(
 export const startDatabase = createAction(DatabaseActionTypes.StartDatabase);
 
 export const stopDatabase = createAction(DatabaseActionTypes.StopDatabase);
+
+export const stopMainCluster = createAction(
+  DatabaseActionTypes.StopMainCluster
+);
+
+export const startMainCluster = createAction(
+  DatabaseActionTypes.StartMainCluster
+);
+
+export const stopWorkerCluster = createAction(
+  DatabaseActionTypes.StopWorkerCluster
+);
+
+export const startWorkerCluster = createAction(
+  DatabaseActionTypes.StartWorkerCluster
+);
+
+export const addWorkerCluster = createAction(
+  DatabaseActionTypes.AddWorkerCluster,
+  props<{ workerCluster: Cluster }>()
+);
