@@ -1,82 +1,49 @@
-<!-- TODO: create component for cluster row -->
 <div class="row py-5 px-4">
   <div class="col-12">
     <div class="dashboard card w-100">
       <div class="dashboard__header p-3 ">
-        <div
-          class="row w-100 d-flex align-items-center justify-content-between"
-        >
-          <div
-            class="dashboard__header__details col-8 d-flex align-items-start justify-content-start"
-          >
+        <div class="row w-100 d-flex align-items-center justify-content-between">
+          <div class="dashboard__header__details col-8 d-flex align-items-start justify-content-start">
             <div class="pb-3 px-3">
               <img src="../../assets/icons/database.svg" class="icon" />
             </div>
             <div class="pl-3">
-              <!-- since no status is returned for the database -assume that DB
-              status = Main cluster status -->
+              <!-- since no status is returned for the database - assume that DB
+              status is the same as Main cluster status -->
               <p class="status m-0">
                 {{ (database$ | async)?.mainCluster?.status }}
               </p>
               <h4 class="mb-3">{{ (database$ | async)?.name }}</h4>
               <div class="d-flex align-items-center">
-                <span
-                  class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
-                  >AWS Region</span
-                >
+                <span class="dashboard__header__label descriptionLabel text-secondary text-uppercase">AWS Region</span>
                 <span class="text-primary">{{
                   (database$ | async)?.region
                 }}</span>
               </div>
               <div class="d-flex align-items-center">
-                <span
-                  class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
-                  >Used storage</span
-                >
-                <span class="text-primary"
-                  >{{ (database$ | async)?.storage | number }} TB</span
-                >
+                <span class="dashboard__header__label descriptionLabel text-secondary text-uppercase">Used
+                  storage</span>
+                <span class="text-primary">{{ (database$ | async)?.storage | number }} TB</span>
               </div>
             </div>
           </div>
           <div class="col-auto dashboard__actions" *ngIf="isAdmin">
-            <!-- TODO: create actions component -->
             <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                data-display="static"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                data-display="static" aria-haspopup="true" aria-expanded="false">
                 Actions
               </button>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
-              >
-                <button
-                  class="dropdown-item"
-                  type="button"
-                  *ngIf="(database$ | async)?.mainCluster?.status !== 'stopped'"
-                  (click)="stopDatabase()"
-                >
+              <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="button"
+                  *ngIf="(database$ | async)?.mainCluster?.status !== 'stopped'" (click)="stopDatabase()">
                   Stop database
                 </button>
-                <button
-                  class="dropdown-item"
-                  type="button"
-                  *ngIf="(database$ | async)?.mainCluster?.status === 'stopped'"
-                  (click)="startDatabase()"
-                >
+                <button class="dropdown-item" type="button"
+                  *ngIf="(database$ | async)?.mainCluster?.status === 'stopped'" (click)="startDatabase()">
                   Start database
                 </button>
-                <button
-                  class="dropdown-item"
-                  type="button"
-                  (click)="openModal(workerClusterModal)"
-                  *ngIf="(database$ | async)?.mainCluster?.status !== 'stopped'"
-                >
+                <button class="dropdown-item" type="button" (click)="openModal(workerClusterModal)"
+                  *ngIf="(database$ | async)?.mainCluster?.status !== 'stopped'">
                   Add worker cluster
                 </button>
               </div>
@@ -86,16 +53,10 @@
       </div>
       <!-- main cluster -->
       <div class="dashboard__row p-3">
-        <app-cluster
-          [cluster]="(database$ | async)?.mainCluster"
-          [isMain]="true"
-        ></app-cluster>
+        <app-cluster [cluster]="(database$ | async)?.mainCluster" [isMain]="true"></app-cluster>
       </div>
       <!-- worker clusters -->
-      <div
-        class="dashboard__row p-3 "
-        *ngFor="let cluster of (database$ | async)?.workerClusters"
-      >
+      <div class="dashboard__row p-3 " *ngFor="let cluster of (database$ | async)?.workerClusters">
         <app-cluster [cluster]="cluster" [isMain]="false"></app-cluster>
       </div>
     </div>
@@ -103,59 +64,5 @@
 </div>
 
 <ng-template #workerClusterModal let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title" id="clusterModal">Add worker cluster</h5>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="btn-group clusterSelect w-100">
-      <button
-        type="button"
-        class="btn btn-lg dropdown-toggle clusterSelect__btn d-flex justify-content-between align-items-center"
-        data-toggle="dropdown"
-        data-display="static"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        <p
-          class="m-0 d-flex flex-column align-items-start justify-content-center"
-        >
-          <span class="text-secondary clusterSelect__label"
-            >Select cluster size</span
-          >
-          <span class="clusterSelect__value">{{ selectedClusterSize }}</span>
-        </p>
-      </button>
-      <div class="dropdown-menu dropdown-menu-right w-100">
-        <button
-          *ngFor="let size of clusterSizes"
-          class="dropdown-item"
-          type="button"
-          (click)="selectClusterSize(size)"
-        >
-          {{ size }}
-        </button>
-        <button class="btn disabled" *ngIf="!clusterSizes.length">
-          No available options
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    class="modal-footer no-border d-flex align-items-center justify-content-between"
-  >
-    <button type="button" class="btn btn-secondary" (click)="closeModal()">
-      Cancel
-    </button>
-    <button type="button" class="btn btn-primary" (click)="addWorkerCluster()">
-      Add
-    </button>
-  </div>
+  <app-add-cluster-modal (onModalClose)="closeModal()"></app-add-cluster-modal>
 </ng-template>

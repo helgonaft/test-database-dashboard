@@ -1,0 +1,18 @@
+@import '_variables.scss';
+
+.clusterSelect {
+  &__label {
+    font-size: 12px;
+  }
+
+  &__value {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__btn {
+    background: $grey-100;
+    color: $navy-400;
+    border: 1px solid $navy-500;
+  }
+}

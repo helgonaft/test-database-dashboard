@@ -1,0 +1,36 @@
+<ng-container>
+  <div class="modal-header">
+    <h5 class="modal-title" id="clusterModal">Add worker cluster</h5>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="btn-group clusterSelect w-100">
+      <button type="button"
+        class="btn btn-lg dropdown-toggle clusterSelect__btn d-flex justify-content-between align-items-center"
+        data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <p class="m-0 d-flex flex-column align-items-start justify-content-center">
+          <span class="text-secondary clusterSelect__label">Select cluster size</span>
+          <span class="clusterSelect__value">{{ selectedClusterSize }}</span>
+        </p>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right w-100">
+        <button *ngFor="let size of clusterSizes" class="dropdown-item" type="button" (click)="selectClusterSize(size)">
+          {{ size }}
+        </button>
+        <button class="btn disabled" *ngIf="!clusterSizes.length">
+          No available options
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer no-border d-flex align-items-center justify-content-between">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">
+      Cancel
+    </button>
+    <button type="button" class="btn btn-primary" (click)="addWorkerCluster()">
+      Add
+    </button>
+  </div>
+</ng-container>

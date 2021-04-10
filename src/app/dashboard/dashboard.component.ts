@@ -21,8 +21,6 @@ import { map } from "rxjs/operators";
 })
 export class DashboardComponent implements OnInit {
   private modalRef: any;
-  public clusterSizes: string[] = CLUSTER_SIZES;
-  public selectedClusterSize: string = this.clusterSizes[0];
   public database: Database;
   public database$: Observable<Database>;
   public mainClusterStatus$: Observable<string>;
@@ -54,20 +52,8 @@ export class DashboardComponent implements OnInit {
     this.modalRef.close();
   }
 
-  selectClusterSize(size): void {
-    this.selectedClusterSize = size;
-  }
-
-  addWorkerCluster(): void {
-    // TODO:  add worker cluster with selected size
-    if (!this.database$) {
-    }
-    this.closeModal();
-  }
-
   getDatabaseInformation() {
     this.databaseService.getDatabaseInfo().subscribe(data => {
-      console.log("database: ", data);
       this.store.dispatch(loadDatabase({ databaseData: data }));
     });
   }
