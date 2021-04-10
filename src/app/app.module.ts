@@ -15,6 +15,7 @@ import { reducers, metaReducers } from "./reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { AddClusterModalComponent } from "./dashboard/add-cluster-modal/add-cluster-modal.component";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AddClusterModalComponent } from "./dashboard/add-cluster-modal/add-clus
     LoginComponent,
     HeaderComponent,
     ClusterComponent,
-    AddClusterModalComponent
+    AddClusterModalComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -85,3 +85,23 @@ input:active,
   font-size: 10px;
   text-transform: uppercase;
 }
+
+.dropdown-toggle {
+  background-color: $grey-200;
+  color: $navy-500;
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $grey-300;
+    color: $navy-500;
+    border: none;
+  }
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: white;
+  background-color: $green-500 !important;
+}
