@@ -9,11 +9,12 @@ import { HeaderComponent } from "./header/header.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { HttpClientModule } from "@angular/common/http";
-import { ClusterComponent } from './dashboard/cluster/cluster.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import { ClusterComponent } from "./dashboard/cluster/cluster.component";
+import { StoreModule } from "@ngrx/store";
+import { reducers, metaReducers } from "./reducers";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { environment } from "../environments/environment";
+import { AddClusterModalComponent } from "./dashboard/add-cluster-modal/add-cluster-modal.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { environment } from '../environments/environment';
     DashboardComponent,
     LoginComponent,
     HeaderComponent,
-    ClusterComponent
+    ClusterComponent,
+    AddClusterModalComponent
   ],
   imports: [
     BrowserModule,
@@ -30,10 +32,10 @@ import { environment } from '../environments/environment';
     NgbModalModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, {
-      metaReducers, 
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
-        strictActionImmutability: true,
+        strictActionImmutability: true
       }
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : []

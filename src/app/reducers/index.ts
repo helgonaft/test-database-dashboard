@@ -77,6 +77,19 @@ const databaseReducer = createReducer(
           }
         })
     }
+  })),
+  on(fromDatabaseAction.addWorkerCluster, (state, { workerCluster }) => ({
+    ...state,
+    databaseData: {
+      ...state.databaseData,
+      workerClusters: [
+        ...state.databaseData.workerClusters,
+        {
+          ...workerCluster,
+          name: `Cluster${state.databaseData.workerClusters.length + 2}`
+        }
+      ]
+    }
   }))
 );
 
