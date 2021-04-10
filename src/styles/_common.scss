@@ -44,6 +44,7 @@ body {
 .btn:not(:disabled) {
   outline: none;
   box-shadow: none !important;
+  border-radius: $radius !important;
 }
 
 input:focus,
@@ -59,4 +60,8 @@ input:active,
   background: white;
   border-radius: $radius;
   box-shadow: $shadow-small;
+}
+
+.no-border {
+  border: none !important;
 }

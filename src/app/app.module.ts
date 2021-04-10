@@ -7,6 +7,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 import { HeaderComponent } from "./header/header.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,12 @@ import { ReactiveFormsModule } from "@angular/forms";
     LoginComponent,
     HeaderComponent
   ],
-  imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgbModalModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
