@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   public isLoading: boolean = false;
   public loginForm: FormGroup;
   public error: string;
+  public isSubmitted: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isSubmitted = true;
     if (this.loginForm.invalid) {
       this.validateAllFormFields(this.loginForm);
       return;

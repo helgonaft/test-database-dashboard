@@ -14,9 +14,9 @@
       <div class="form-group mb-4">
         <input class="form-control py-4" type="password" name="password" placeholder="Password"
           formControlName="password"
-          [ngClass]="{ 'is-invalid': !loginForm.untouched && loginForm.controls.password.errors }" />
+          [ngClass]="{ 'is-invalid': !loginForm.untouched && (!loginForm.controls.password.pristine || isSubmitted) && loginForm.controls.password.errors }" />
         <div
-          *ngIf="!loginForm.untouched && loginForm.controls.password.errors && loginForm.controls.password.errors.required"
+          *ngIf="loginForm.touched && (!loginForm.controls.password.pristine || isSubmitted) && loginForm.controls.password.errors && loginForm.controls.password.errors.required"
           class="text-danger">Password is required</div>
       </div>
       <button class="btn btn-primary btn-sm w-100" type="submit">Sign in</button>
