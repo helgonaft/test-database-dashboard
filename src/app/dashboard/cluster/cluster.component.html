@@ -26,8 +26,11 @@
         Actions
       </button>
       <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-        <button class="dropdown-item" type="button">
+        <button class="dropdown-item" type="button" *ngIf="cluster?.status !== 'stopped'">
           Stop cluster
+        </button>
+        <button class="dropdown-item" type="button" *ngIf="cluster?.status === 'stopped'">
+          Start cluster
         </button>
       </div>
     </div>
