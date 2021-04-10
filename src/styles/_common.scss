@@ -10,6 +10,7 @@ h6,
 p,
 .text-primary {
   color: $navy-500 !important;
+  font-family: 'Roboto', sans-serif;
 }
 
 .text-secondary {
@@ -56,37 +57,9 @@ input:active,
   box-shadow: none;
 }
 
-.card {
-  background: white;
-  border-radius: $radius;
-  box-shadow: $shadow-small;
-}
 
-.no-border {
-  border: none !important;
-}
-
-.status {
-  font-size: 12px;
-  color: $navy-400;
-}
-
-.descriptionLabel {
-  margin-right: 10px;
-  font-size: 10px;
-  color: $grey-50;
-}
-
-.badgeLabel {
-  padding: 0 5px;
-  color: $navy-400;
-  background-color: $grey-200;
-  border: 1px solid $grey-300;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-
-.dropdown-toggle {
+.dropdown-toggle,
+.btn-secondary {
   background-color: $grey-200;
   color: $navy-500;
   border: none;
@@ -104,4 +77,35 @@ input:active,
 .dropdown-item:active {
   color: white;
   background-color: $green-500 !important;
+}
+
+.card {
+  background: white;
+  border-radius: $radius;
+  box-shadow: $shadow-small;
+}
+
+.no-border {
+  border: none !important;
+}
+
+.status {
+  font-size: 12px;
+  color: $navy-400;
+  text-transform: capitalize;
+}
+
+.descriptionLabel {
+  margin-right: 10px;
+  font-size: 10px;
+  color: $grey-50;
+}
+
+.badgeLabel {
+  padding: 0 5px;
+  color: $navy-400;
+  background-color: $grey-200;
+  border: 1px solid $grey-300;
+  font-size: 10px;
+  text-transform: uppercase;
 }
