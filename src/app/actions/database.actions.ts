@@ -32,11 +32,13 @@ export const stopDatabaseAndAllClusters = createAction(
 );
 
 export const stopWorkerCluster = createAction(
-  DatabaseActionTypes.StopWorkerCluster
+  DatabaseActionTypes.StopWorkerCluster,
+  props<{ targetCluster: Cluster }>()
 );
 
 export const startWorkerCluster = createAction(
-  DatabaseActionTypes.StartWorkerCluster
+  DatabaseActionTypes.StartWorkerCluster,
+  props<{ targetCluster: Cluster }>()
 );
 
 export const addWorkerCluster = createAction(

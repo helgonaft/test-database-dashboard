@@ -4,7 +4,8 @@ import { Cluster } from "src/app/types";
 import {
   startDatabaseAndMainCluster,
   stopDatabaseAndAllClusters,
-  startWorkerCluster
+  startWorkerCluster,
+  stopWorkerCluster
 } from "src/app/actions/database.actions";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/reducers";
@@ -33,7 +34,7 @@ export class ClusterComponent implements OnInit {
     if (this.isMain) {
       this.store.dispatch(startDatabaseAndMainCluster());
     } else {
-      this.store.dispatch(startWorkerCluster(cluster));
+      this.store.dispatch(startWorkerCluster({ targetCluster: cluster }));
     }
   }
 
@@ -41,7 +42,7 @@ export class ClusterComponent implements OnInit {
     if (this.isMain) {
       this.store.dispatch(stopDatabaseAndAllClusters());
     } else {
-      this.store.dispatch(stoptWorkerCluster(cluster));
+      this.store.dispatch(stopWorkerCluster({ targetCluster: cluster }));
     }
   }
 }

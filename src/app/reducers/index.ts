@@ -41,6 +41,42 @@ const databaseReducer = createReducer(
           };
         })
     }
+  })),
+  on(fromDatabaseAction.startWorkerCluster, (state, { targetCluster }) => ({
+    ...state,
+    databaseData: {
+      ...state.databaseData,
+      workerClusters: state.databaseData.workerClusters
+        .map(workCluster => ({ ...workCluster }))
+        .map(workCluster => {
+          if (workCluster.name === targetCluster.name) {
+            return {
+              ...workCluster,
+              status: "running"
+            };
+          } else {
+            return workCluster;
+          }
+        })
+    }
+  })),
+  on(fromDatabaseAction.stopWorkerCluster, (state, { targetCluster }) => ({
+    ...state,
+    databaseData: {
+      ...state.databaseData,
+      workerClusters: state.databaseData.workerClusters
+        .map(workCluster => ({ ...workCluster }))
+        .map(workCluster => {
+          if (workCluster.name === targetCluster.name) {
+            return {
+              ...workCluster,
+              status: "stopped"
+            };
+          } else {
+            return workCluster;
+          }
+        })
+    }
   }))
 );
 
