@@ -1,4 +1,4 @@
-<div class="row py-5 px-4">
+<div class="row py-5 px-4" *ngIf="!isLoading; else spinner">
   <div class="col-12">
     <div class="dashboard card w-100">
       <div class="dashboard__header p-3 ">
@@ -65,4 +65,10 @@
 
 <ng-template #workerClusterModal let-modal>
   <app-add-cluster-modal (onModalClose)="closeModal()"></app-add-cluster-modal>
+</ng-template>
+
+<ng-template #spinner>
+  <div class="d-flex align-items-center justify-content-center w-100 m-5 p-5">
+    <span>Loading...</span>
+  </div>
 </ng-template>

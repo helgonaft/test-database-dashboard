@@ -3,7 +3,6 @@ import { AuthService } from "../services/authentication.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DatabaseService } from "../services/database.service";
 import { Database } from "../types/database.type";
-import { CLUSTER_SIZES } from "../constants";
 import { Store, select } from "@ngrx/store";
 import { AppState, selectDatabase } from "../reducers";
 import {
@@ -12,7 +11,6 @@ import {
   startDatabaseAndMainCluster
 } from "../actions/database.actions";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-dashboard",
@@ -23,8 +21,7 @@ export class DashboardComponent implements OnInit {
   private modalRef: any;
   public database: Database;
   public database$: Observable<Database>;
-  public mainClusterStatus$: Observable<string>;
-
+  public isLoading: boolean;
   constructor(
     private authService: AuthService,
     private modalService: NgbModal,
@@ -33,6 +30,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.getDatabaseInformation();
     this.database$ = this.store.pipe(select(selectDatabase));
   }
@@ -52,17 +50,18 @@ export class DashboardComponent implements OnInit {
     this.modalRef.close();
   }
 
-  getDatabaseInformation() {
+  getDatabaseInformation(): void {
     this.databaseService.getDatabaseInfo().subscribe(data => {
       this.store.dispatch(loadDatabase({ databaseData: data }));
+      this.isLoading = false;
     });
   }
 
-  startDatabase() {
+  startDatabase(): void {
     this.store.dispatch(startDatabaseAndMainCluster());
   }
 
-  stopDatabase() {
+  stopDatabase(): void {
     this.store.dispatch(stopDatabaseAndAllClusters());
   }
 }
