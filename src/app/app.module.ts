@@ -8,6 +8,7 @@ import { LoginComponent } from "./login/login.component";
 import { HeaderComponent } from "./header/header.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    NgbModalModule
+    NgbModalModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

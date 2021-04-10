@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../services/authentication.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { DatabaseService } from "../services/database.service";
+import { Database } from "../types/database.type";
 
 @Component({
   selector: "app-dashboard",
@@ -9,15 +11,19 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class DashboardComponent implements OnInit {
   private modalRef: any;
-  public selectedClusterSize: string = "m5.xlarge";
-  public clusterSizes: string[] = [];
+  public clusterSizes: string[] = ["m5.large", "m5.xlarge", "m5.2xlarge"];
+  public selectedClusterSize: string = this.clusterSizes[0];
+  public database: Database;
 
   constructor(
     private authService: AuthService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private databaseService: DatabaseService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getDatabaseInformation();
+  }
 
   get isAdmin() {
     return this.authService.isAdmin;
@@ -35,6 +41,18 @@ export class DashboardComponent implements OnInit {
   }
 
   selectClusterSize(size): void {
-    this.selectClusterSize = size;
+    this.selectedClusterSize = size;
+  }
+
+  addWorkerCluster(): void {
+    // TODO:  add worker cluster with selected size
+    this.closeModal();
+  }
+
+  getDatabaseInformation() {
+    this.databaseService.getDatabaseInfo().subscribe(data => {
+      console.log("database: ", data);
+      this.database = data;
+    });
   }
 }

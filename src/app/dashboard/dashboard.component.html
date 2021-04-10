@@ -14,20 +14,22 @@
             </div>
             <div class="pl-3">
               <p class="status m-0">Running</p>
-              <h4 class="mb-3">Playground</h4>
+              <h4 class="mb-3">{{ database?.name }}</h4>
               <div class="d-flex align-items-center">
                 <span
                   class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
                   >AWS Region</span
                 >
-                <span class="text-primary">EU Frankfurt</span>
+                <span class="text-primary">{{ database?.region }}</span>
               </div>
               <div class="d-flex align-items-center">
                 <span
                   class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
                   >Used storage</span
                 >
-                <span class="text-primary">1.45 TB</span>
+                <span class="text-primary"
+                  >{{ database?.storage | number }} TB</span
+                >
               </div>
             </div>
           </div>
