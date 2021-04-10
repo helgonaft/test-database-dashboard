@@ -3,6 +3,7 @@ import { AuthService } from "../services/authentication.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DatabaseService } from "../services/database.service";
 import { Database } from "../types/database.type";
+import { CLUSTER_SIZES } from "../constants";
 
 @Component({
   selector: "app-dashboard",
@@ -11,7 +12,7 @@ import { Database } from "../types/database.type";
 })
 export class DashboardComponent implements OnInit {
   private modalRef: any;
-  public clusterSizes: string[] = ["m5.large", "m5.xlarge", "m5.2xlarge"];
+  public clusterSizes: string[] = CLUSTER_SIZES;
   public selectedClusterSize: string = this.clusterSizes[0];
   public database: Database;
   public isMainClusterStopped: boolean;
