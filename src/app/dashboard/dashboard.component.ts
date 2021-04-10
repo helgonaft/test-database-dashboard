@@ -1,16 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../services/authentication.service";
+import { Observable } from "rxjs";
+import { Router } from "@angular/router";
+import { Store, select } from "@ngrx/store";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DatabaseService } from "../services/database.service";
+import { AuthService } from "../services/authentication.service";
 import { Database } from "../types/database.type";
-import { Store, select } from "@ngrx/store";
 import { AppState, selectDatabase } from "../reducers";
 import {
   loadDatabase,
   stopDatabaseAndAllClusters,
   startDatabaseAndMainCluster
 } from "../actions/database.actions";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-dashboard",
@@ -26,10 +27,14 @@ export class DashboardComponent implements OnInit {
     private authService: AuthService,
     private modalService: NgbModal,
     private databaseService: DatabaseService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    if (!this.authService.currentUser) {
+      this.router.navigate(["/login"]);
+    }
     this.isLoading = true;
     this.getDatabaseInformation();
     this.database$ = this.store.pipe(select(selectDatabase));
