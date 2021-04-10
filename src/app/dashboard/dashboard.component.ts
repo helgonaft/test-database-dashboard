@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   public clusterSizes: string[] = ["m5.large", "m5.xlarge", "m5.2xlarge"];
   public selectedClusterSize: string = this.clusterSizes[0];
   public database: Database;
+  public isMainClusterStopped: boolean;
 
   constructor(
     private authService: AuthService,
@@ -45,7 +46,9 @@ export class DashboardComponent implements OnInit {
   }
 
   addWorkerCluster(): void {
-    // TODO:  add worker cluster with selected size
+    if (!this.isMainClusterStopped) {
+      // TODO:  add worker cluster with selected size
+    }
     this.closeModal();
   }
 
@@ -53,6 +56,8 @@ export class DashboardComponent implements OnInit {
     this.databaseService.getDatabaseInfo().subscribe(data => {
       console.log("database: ", data);
       this.database = data;
+      this.isMainClusterStopped =
+        this.database.mainCluster.status === "stopped";
     });
   }
 }

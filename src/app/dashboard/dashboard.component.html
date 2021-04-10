@@ -13,7 +13,9 @@
               <img src="../../assets/icons/database.svg" class="icon" />
             </div>
             <div class="pl-3">
-              <p class="status m-0">Running</p>
+              <!-- since no status is returned for the database -assume that DB
+              status = Main cluster status -->
+              <p class="status m-0">{{ database?.mainCluster?.status }}</p>
               <h4 class="mb-3">{{ database?.name }}</h4>
               <div class="d-flex align-items-center">
                 <span
@@ -49,13 +51,25 @@
               <div
                 class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
               >
-                <button class="dropdown-item" type="button">
+                <button
+                  class="dropdown-item"
+                  type="button"
+                  *ngIf="!isMainClusterStopped"
+                >
                   Stop database
                 </button>
                 <button
                   class="dropdown-item"
                   type="button"
+                  *ngIf="isMainClusterStopped"
+                >
+                  Start database
+                </button>
+                <button
+                  class="dropdown-item"
+                  type="button"
                   (click)="openModal(workerClusterModal)"
+                  *ngIf="!isMainClusterStopped"
                 >
                   Add worker cluster
                 </button>
