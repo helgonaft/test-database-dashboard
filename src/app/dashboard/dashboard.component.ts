@@ -5,11 +5,11 @@ import { DatabaseService } from "../services/database.service";
 import { Database } from "../types/database.type";
 import { CLUSTER_SIZES } from "../constants";
 import { Store, select } from "@ngrx/store";
-import { AppState, selectDatabase, selectMainClusterStatus } from "../reducers";
+import { AppState, selectDatabase } from "../reducers";
 import {
   loadDatabase,
-  startDatabase,
-  stopDatabase
+  stopDatabaseAndAllClusters,
+  startDatabaseAndMainCluster
 } from "../actions/database.actions";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -73,10 +73,10 @@ export class DashboardComponent implements OnInit {
   }
 
   startDatabase() {
-    this.store.dispatch(startDatabase());
+    this.store.dispatch(startDatabaseAndMainCluster());
   }
 
   stopDatabase() {
-    this.store.dispatch(stopDatabase());
+    this.store.dispatch(stopDatabaseAndAllClusters());
   }
 }

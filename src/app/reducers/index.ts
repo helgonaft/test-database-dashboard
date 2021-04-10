@@ -20,14 +20,14 @@ const databaseReducer = createReducer(
     ...state,
     databaseData
   })),
-  on(fromDatabaseAction.startDatabase, state => ({
+  on(fromDatabaseAction.startDatabaseAndMainCluster, state => ({
     ...state,
     databaseData: {
       ...state.databaseData,
       mainCluster: { ...state.databaseData.mainCluster, status: "running" }
     }
   })),
-  on(fromDatabaseAction.stopDatabase, state => ({
+  on(fromDatabaseAction.stopDatabaseAndAllClusters, state => ({
     ...state,
     databaseData: {
       ...state.databaseData,

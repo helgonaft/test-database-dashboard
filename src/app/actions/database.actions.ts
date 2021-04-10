@@ -3,9 +3,8 @@ import { Database, Cluster } from "../types";
 
 export enum DatabaseActionTypes {
   LoadDatabase = "[DB] Load Database information",
-  StopDatabase = "[DB] Stop Database",
+  StopDatabase = "[DB] Stop Database and all clusters",
   StartDatabase = "[DB] Start Database",
-  StopMainCluster = "[Main Cluster] Stop Main Cluster",
   StartMainCluster = "[Main Cluster] Start Main Cluster",
   StopWorkerCluster = "[Worker Cluster] Stop Worker Cluster",
   StartWorkerCluster = "[Worker Cluster] Start Worker Cluster",
@@ -24,16 +23,12 @@ export const loadDatabase = createAction(
   props<{ databaseData: Database }>()
 );
 
-export const startDatabase = createAction(DatabaseActionTypes.StartDatabase);
-
-export const stopDatabase = createAction(DatabaseActionTypes.StopDatabase);
-
-export const stopMainCluster = createAction(
-  DatabaseActionTypes.StopMainCluster
+export const startDatabaseAndMainCluster = createAction(
+  `${DatabaseActionTypes.StartMainCluster} + ${DatabaseActionTypes.StartDatabase}`
 );
 
-export const startMainCluster = createAction(
-  DatabaseActionTypes.StartMainCluster
+export const stopDatabaseAndAllClusters = createAction(
+  DatabaseActionTypes.StopDatabase
 );
 
 export const stopWorkerCluster = createAction(
