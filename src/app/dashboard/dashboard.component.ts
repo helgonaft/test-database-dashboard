@@ -4,6 +4,15 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DatabaseService } from "../services/database.service";
 import { Database } from "../types/database.type";
 import { CLUSTER_SIZES } from "../constants";
+import { Store, select } from "@ngrx/store";
+import { AppState, selectDatabase, selectMainClusterStatus } from "../reducers";
+import {
+  loadDatabase,
+  startDatabase,
+  stopDatabase
+} from "../actions/database.actions";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-dashboard",
@@ -15,16 +24,19 @@ export class DashboardComponent implements OnInit {
   public clusterSizes: string[] = CLUSTER_SIZES;
   public selectedClusterSize: string = this.clusterSizes[0];
   public database: Database;
-  public isMainClusterStopped: boolean;
+  public database$: Observable<Database>;
+  public mainClusterStatus$: Observable<string>;
 
   constructor(
     private authService: AuthService,
     private modalService: NgbModal,
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
     this.getDatabaseInformation();
+    this.database$ = this.store.pipe(select(selectDatabase));
   }
 
   get isAdmin() {
@@ -47,8 +59,8 @@ export class DashboardComponent implements OnInit {
   }
 
   addWorkerCluster(): void {
-    if (!this.isMainClusterStopped) {
-      // TODO:  add worker cluster with selected size
+    // TODO:  add worker cluster with selected size
+    if (!this.database$) {
     }
     this.closeModal();
   }
@@ -56,9 +68,15 @@ export class DashboardComponent implements OnInit {
   getDatabaseInformation() {
     this.databaseService.getDatabaseInfo().subscribe(data => {
       console.log("database: ", data);
-      this.database = data;
-      this.isMainClusterStopped =
-        this.database.mainCluster.status === "stopped";
+      this.store.dispatch(loadDatabase({ databaseData: data }));
     });
+  }
+
+  startDatabase() {
+    this.store.dispatch(startDatabase());
+  }
+
+  stopDatabase() {
+    this.store.dispatch(stopDatabase());
   }
 }
