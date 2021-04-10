@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Cluster } from "cluster";
 import { AuthService } from "../../services/authentication.service";
+import { Cluster } from "src/app/types";
 
 @Component({
   selector: "app-cluster",
