@@ -1,0 +1,35 @@
+<div class="row w-100 d-flex align-items-center justify-content-between">
+  <div class="d-flex col-6 col-sm-8 w-100">
+    <div class="d-flex px-3">
+      <img src="../../assets/icons/cluster.svg" class="icon" />
+    </div>
+    <div class="row w-100 pl-3">
+      <div class="col-6 d-flex flex-column align-items-start justify-content-center">
+        <span class="status">{{ cluster?.status }}</span>
+        <h6 class="mt-2">{{ cluster?.name }}</h6>
+      </div>
+      <div class="col-6  d-flex flex-column align-items-start justify-content-center">
+        <span class="badgeLabel" [ngClass]="isMain ? '' : 'invisible' ">Lead</span>
+        <p class="m-0">
+          <span class="text-secondary text-uppercase descriptionLabel">Cluster size
+          </span>
+          <span>{{ cluster?.instanceType }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard__actions col-auto" *ngIf="isAdmin">
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static"
+        aria-haspopup="true" aria-expanded="false">
+        Actions
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+        <button class="dropdown-item" type="button">
+          Stop cluster
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

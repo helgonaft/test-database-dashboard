@@ -9,13 +9,15 @@ import { HeaderComponent } from "./header/header.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { HttpClientModule } from "@angular/common/http";
+import { ClusterComponent } from './dashboard/cluster/cluster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    ClusterComponent
   ],
   imports: [
     BrowserModule,

@@ -3,12 +3,8 @@
   <div class="col-12">
     <div class="dashboard card w-100">
       <div class="dashboard__header p-3 ">
-        <div
-          class="row w-100 d-flex align-items-center justify-content-between"
-        >
-          <div
-            class="dashboard__header__details col-8 d-flex align-items-start justify-content-start"
-          >
+        <div class="row w-100 d-flex align-items-center justify-content-between">
+          <div class="dashboard__header__details col-8 d-flex align-items-start justify-content-start">
             <div class="pb-3 px-3">
               <img src="../../assets/icons/database.svg" class="icon" />
             </div>
@@ -18,59 +14,32 @@
               <p class="status m-0">{{ database?.mainCluster?.status }}</p>
               <h4 class="mb-3">{{ database?.name }}</h4>
               <div class="d-flex align-items-center">
-                <span
-                  class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
-                  >AWS Region</span
-                >
+                <span class="dashboard__header__label descriptionLabel text-secondary text-uppercase">AWS Region</span>
                 <span class="text-primary">{{ database?.region }}</span>
               </div>
               <div class="d-flex align-items-center">
-                <span
-                  class="dashboard__header__label descriptionLabel text-secondary text-uppercase"
-                  >Used storage</span
-                >
-                <span class="text-primary"
-                  >{{ database?.storage | number }} TB</span
-                >
+                <span class="dashboard__header__label descriptionLabel text-secondary text-uppercase">Used
+                  storage</span>
+                <span class="text-primary">{{ database?.storage | number }} TB</span>
               </div>
             </div>
           </div>
           <div class="col-auto dashboard__actions" *ngIf="isAdmin">
             <!-- TODO: create actions component -->
             <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                data-display="static"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                data-display="static" aria-haspopup="true" aria-expanded="false">
                 Actions
               </button>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
-              >
-                <button
-                  class="dropdown-item"
-                  type="button"
-                  *ngIf="!isMainClusterStopped"
-                >
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+                <button class="dropdown-item" type="button" *ngIf="!isMainClusterStopped">
                   Stop database
                 </button>
-                <button
-                  class="dropdown-item"
-                  type="button"
-                  *ngIf="isMainClusterStopped"
-                >
+                <button class="dropdown-item" type="button" *ngIf="isMainClusterStopped">
                   Start database
                 </button>
-                <button
-                  class="dropdown-item"
-                  type="button"
-                  (click)="openModal(workerClusterModal)"
-                  *ngIf="!isMainClusterStopped"
-                >
+                <button class="dropdown-item" type="button" (click)="openModal(workerClusterModal)"
+                  *ngIf="!isMainClusterStopped">
                   Add worker cluster
                 </button>
               </div>
@@ -80,112 +49,11 @@
       </div>
       <!-- main cluster -->
       <div class="dashboard__row p-3">
-        <div
-          class="row w-100 d-flex align-items-center justify-content-between"
-        >
-          <div class="d-flex col-6 col-sm-8 w-100">
-            <div class="d-flex px-3">
-              <img src="../../assets/icons/cluster.svg" class="icon" />
-            </div>
-            <div class="row w-100 pl-3">
-              <div
-                class="col-6 d-flex flex-column align-items-start justify-content-center"
-              >
-                <span class="status">{{ database?.mainCluster?.status }}</span>
-                <h6 class="mt-2">{{ database?.mainCluster?.name }}</h6>
-              </div>
-              <div
-                class="col-6  d-flex flex-column align-items-start justify-content-center"
-              >
-                <span class="badgeLabel">Lead</span>
-                <p class="m-0">
-                  <span class="text-secondary text-uppercase descriptionLabel"
-                    >Cluster size
-                  </span>
-                  <span>{{ database?.mainCluster?.instanceType }}</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="dashboard__actions col-auto" *ngIf="isAdmin">
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                data-display="static"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Actions
-              </button>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
-              >
-                <button class="dropdown-item" type="button">
-                  Stop cluster
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <app-cluster [cluster]="database?.mainCluster" [isMain]="true"></app-cluster>
       </div>
       <!-- worker clusters -->
-      <div
-        class="dashboard__row p-3 "
-        *ngFor="let cluster of database?.workerClusters"
-      >
-        <div
-          class="row w-100 d-flex align-items-center justify-content-between"
-        >
-          <div class="d-flex col-6 col-sm-8 w-100">
-            <div class="d-flex px-3">
-              <img src="../../assets/icons/cluster.svg" class="icon" />
-            </div>
-            <div class="row w-100 pl-3">
-              <div
-                class="col-6 d-flex flex-column align-items-start justify-content-center"
-              >
-                <span class="status">{{ cluster.status }}</span>
-                <h6 class="mt-2">{{ cluster.name }}</h6>
-              </div>
-              <div
-                class="col-6  d-flex flex-column align-items-start justify-content-center"
-              >
-                <p class="m-0">
-                  <span class="text-secondary text-uppercase descriptionLabel"
-                    >Cluster size
-                  </span>
-                  <span>{{ cluster.instanceType }}</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="dashboard__actions col-auto" *ngIf="isAdmin">
-            <!-- TODO: create actions component -->
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                data-display="static"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Actions
-              </button>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
-              >
-                <button class="dropdown-item" type="button">
-                  Stop cluster
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="dashboard__row p-3 " *ngFor="let cluster of database?.workerClusters">
+        <app-cluster [cluster]="cluster" [isMain]="false"></app-cluster>
       </div>
     </div>
   </div>
@@ -194,41 +62,22 @@
 <ng-template #workerClusterModal let-modal>
   <div class="modal-header">
     <h5 class="modal-title" id="clusterModal">Add worker cluster</h5>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div class="btn-group clusterSelect w-100">
-      <button
-        type="button"
+      <button type="button"
         class="btn btn-lg dropdown-toggle clusterSelect__btn d-flex justify-content-between align-items-center"
-        data-toggle="dropdown"
-        data-display="static"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        <p
-          class="m-0 d-flex flex-column align-items-start justify-content-center"
-        >
-          <span class="text-secondary clusterSelect__label"
-            >Select cluster size</span
-          >
+        data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <p class="m-0 d-flex flex-column align-items-start justify-content-center">
+          <span class="text-secondary clusterSelect__label">Select cluster size</span>
           <span class="clusterSelect__value">{{ selectedClusterSize }}</span>
         </p>
       </button>
       <div class="dropdown-menu dropdown-menu-right w-100">
-        <button
-          *ngFor="let size of clusterSizes"
-          class="dropdown-item"
-          type="button"
-          (click)="selectClusterSize(size)"
-        >
+        <button *ngFor="let size of clusterSizes" class="dropdown-item" type="button" (click)="selectClusterSize(size)">
           {{ size }}
         </button>
         <button class="btn disabled" *ngIf="!clusterSizes.length">
@@ -237,9 +86,7 @@
       </div>
     </div>
   </div>
-  <div
-    class="modal-footer no-border d-flex align-items-center justify-content-between"
-  >
+  <div class="modal-footer no-border d-flex align-items-center justify-content-between">
     <button type="button" class="btn btn-secondary" (click)="closeModal()">
       Cancel
     </button>
