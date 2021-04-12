@@ -4,6 +4,7 @@
 
 Used technologies: Angular 8, NgRx 8, Bootstrap 4, SCSS.
 Spent time: about 19h
+To run the app: npm i and ng serve
 
 ## Development server
 
